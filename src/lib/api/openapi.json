@@ -1,0 +1,122 @@
+{
+  "openapi": "3.2.0",
+  "info": {
+    "title": "Vereine.Api | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5610"
+    }
+  ],
+  "paths": {
+    "/clubs": {
+      "post": {
+        "tags": [
+          "Vereine.Api"
+        ],
+        "operationId": "CreateClub",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClubRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClubResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clubs/{Id}": {
+      "get": {
+        "tags": [
+          "Vereine.Api"
+        ],
+        "operationId": "GetClub",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClubResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClubResponse": {
+        "required": [
+          "id",
+          "name",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateClubRequest": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "Verein anlegen. Die Id vergibt der Aufrufer (Guid v7), dadurch ist der Aufruf wiederholbar."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Vereine.Api"
+    }
+  ]
+}

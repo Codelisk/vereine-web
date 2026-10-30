@@ -1,0 +1,54 @@
+{
+  "name": "vereine-web",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=24.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "dev:aspire": "astro dev --ignore-lock",
+    "start": "node dist/server/entry.mjs",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "sync": "astro sync",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "astro": "astro",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "api:spec": "curl -sf ${VEREINE_API_URL:-http://localhost:5610}/openapi/v1.json -o src/lib/api/openapi.json",
+    "api:types": "openapi-typescript src/lib/api/openapi.json -o src/lib/api/schema.d.ts"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/svelte": "^9.1.2",
+    "astro": "^7.4.4",
+    "openapi-fetch": "^0.17.0",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-svelte": "^3.23.1",
+    "globals": "^17.13.0",
+    "openapi-typescript": "^7.13.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
+    "prettier-plugin-svelte": "^4.1.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.0.5"
+  },
+  "overrides": {
+    "openapi-typescript": {
+      "typescript": "$typescript"
+    }
+  }
+}

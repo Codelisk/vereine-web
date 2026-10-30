@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { APP } from '@/config/site';
+---
+
+<BaseLayout>
+  <main class="start">
+    <h1>{APP.name}</h1>
+    <p class="lead">{APP.description}</p>
+    <p class="hint">Hier entsteht die Verwaltung für deinen Verein. Bald geht es los.</p>
+  </main>
+</BaseLayout>
+
+<style>
+  .start {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .lead {
+    font-size: var(--text-lead);
+    color: var(--color-text);
+  }
+
+  .hint {
+    color: var(--color-text-muted);
+  }
+</style>

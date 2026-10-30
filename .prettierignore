@@ -1,0 +1,8 @@
+dist/
+.astro/
+node_modules/
+package-lock.json
+src/lib/api/schema.d.ts
+src/lib/api/openapi.json
+playwright-report/
+test-results/

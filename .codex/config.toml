@@ -1,0 +1,5 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+# Offizielle Astro-Dokumentation. Projektlokal: Codex lädt diese Konfiguration nur für ein vertrautes Repo.
+[mcp_servers.astro-docs]
+url = "https://mcp.docs.astro.build/mcp"

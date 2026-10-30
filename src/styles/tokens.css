@@ -1,0 +1,79 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Design-Tokens der Verwaltungswebseite. Vorläufig neutral, bis es ein
+   Markenbild gibt: Rasengrün als Primärfarbe, sonst ruhige Grautöne.
+   Dunkel folgt dem System (`prefers-color-scheme`).
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light;
+
+  /* ── Marke ── */
+  --color-brand: #13703a; /* Schrift und Rand (Links, Fokus, Auswahl) */
+  --color-brand-fill: #13703a; /* Fläche unter weißer Schrift (Primäraktion) */
+  --color-brand-fill-hover: #0f5c2f;
+  --color-brand-tint: #e3f2e8; /* Auswahl, gewählte Zeile */
+
+  /* ── Semantik ── */
+  --color-success: #137333;
+  --color-success-bg: #e6f4ea;
+  --color-warning: #8f6000;
+  --color-warning-bg: #fff4d6;
+  --color-danger: #b42318;
+  --color-danger-bg: #fdecea;
+
+  /* ── Flächen & Linien ── */
+  --color-paper: #ffffff; /* Karten, Inhalt */
+  --color-surface: #f5f7f6; /* Seitenhintergrund */
+  --color-surface-2: #e9eeeb; /* Hover, Tabellen-Zebra */
+  --color-line: #d7dfda;
+
+  /* ── Text ── */
+  --color-text: #1d2420;
+  --color-text-muted: #56615a;
+  --color-text-on-fill: #ffffff;
+
+  /* ── Typografie ── */
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --text-base: 1rem;
+  --text-lead: 1.15rem;
+  --text-h1: 1.75rem;
+  --text-h2: 1.3rem;
+
+  /* ── Abstände & Formen ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius: 0.5rem;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-brand) 35%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --color-brand: #6fd197;
+    --color-brand-fill: #1f8a4c;
+    --color-brand-fill-hover: #25a058;
+    --color-brand-tint: #1b3326;
+
+    --color-success: #7fd49b;
+    --color-success-bg: #18301f;
+    --color-warning: #f2c35b;
+    --color-warning-bg: #3a2e12;
+    --color-danger: #ff8a80;
+    --color-danger-bg: #3d1a17;
+
+    --color-paper: #1a1f1c;
+    --color-surface: #121513;
+    --color-surface-2: #232a26;
+    --color-line: #333d37;
+
+    --color-text: #e8ede9;
+    --color-text-muted: #a5b0a9;
+    --color-text-on-fill: #ffffff;
+  }
+}

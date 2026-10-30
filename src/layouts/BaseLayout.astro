@@ -1,0 +1,32 @@
+---
+/**
+ * Basis-Layout: kompletter <head> für alle Seiten. Hell und Dunkel folgen dem System
+ * (`prefers-color-scheme`, siehe tokens.css). Bis es eine öffentliche Seite gibt: noindex.
+ */
+import '@/styles/global.css';
+import { APP } from '@/config/site';
+
+interface Props {
+  /** Seitentitel ohne App-Suffix; ohne Titel steht nur der App-Name im Tab. */
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content={APP.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <title>{title ? `${title} · ${APP.name}` : APP.name}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
