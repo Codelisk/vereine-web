@@ -17,7 +17,8 @@ Gehört zu drei Repos, die nebeneinander liegen:
 - Svelte 5 für interaktive Inseln (`@astrojs/svelte`)
 - TypeScript strict, Alias `@/*` für `src/*`
 - `openapi-fetch` und `openapi-typescript` für den typisierten Zugriff auf vereine-api
-- ESLint (flat config, Astro, Svelte, typescript-eslint), Prettier, Vitest, Playwright
+- ESLint (flat config, Astro, Svelte, typescript-eslint), Stylelint, Prettier, Vitest, Playwright mit axe
+- Designsystem in `design/` nach dem Vorbild von Spotify (Encore), Icons von [Phosphor](https://phosphoricons.com) (MIT)
 
 TypeScript bleibt auf ^6: TS 7 (tsgo) bringt keine Compiler-API mehr mit, und `@astrojs/check` sowie
 `typescript-eslint` unterstützen bisher höchstens 6.x.
@@ -28,7 +29,9 @@ TypeScript bleibt auf ^6: TS 7 (tsgo) bringt keine Compiler-API mehr mit, und `@
 npm install
 npm run dev                  # Dev-Server (Astro-Vorgabe localhost:4321, unter Aspire Port 4610)
 npm run check                # astro check
-npm run lint                 # eslint
+npm run lint                 # Design-Abgleich, eslint, stylelint
+npm run design               # Designsystem aus design/ erzeugen (auch für vereine-app)
+npm run design:screens       # axe und Screenshots in Hell/Dunkel, Handy/Desktop
 npm run format               # prettier
 npm test                     # vitest (Unit-Tests neben dem Code)
 npm run test:e2e             # playwright (eigene Instanz auf 127.0.0.1:14610)
@@ -74,11 +77,23 @@ src/
     api/client.ts          typisierter Client für vereine-api
     server-config.ts       PORT und ASTRO_ALLOWED_ORIGIN prüfen
   pages/                   Routen; gesund.ts für Docker und Aspire
-  styles/                  tokens.css (Hell/Dunkel), global.css
+  components/Icon.astro    Icon aus public/icons.svg
+  styles/                  global.css; tokens.css und base.css sind erzeugt
+design/                    Quelle des Designsystems: tokens.json, base.css, icons.json, build.ts
+docs/                      ADRs, Recherche zum Designsystem
 tests/
-  e2e/                     Playwright
+  e2e/                     Playwright, design.spec.ts prüft Hell/Dunkel mit axe
   support/start-web.mjs    eigene Dev-Instanz für Playwright
 ```
+
+## Designsystem
+
+Farben, Schrift, Abstände, Radien, Schatten und Icons kommen aus einer Quelle in `design/`. `npm run design`
+erzeugt daraus `src/styles/tokens.css`, `src/styles/base.css`, `public/icons.svg` und `src/components/icon-names.ts`
+und, wenn `../vereine-app` daneben liegt, die Gegenstücke der App (CSS, Sprite, C#-Enum, XAML- und Android-Farben).
+Der Generator prüft den WCAG-Kontrast aller Farbsets. Seiten nutzen nur Tokens und die Bausteine aus `base.css`;
+Stylelint lehnt feste Werte ab. Anleitung: Skill `.claude/skills/vereine-design`, Hintergrund:
+`docs/design/recherche.md`, Entscheidung: `docs/adr/0001-designsystem.md`.
 
 ## Docker
 

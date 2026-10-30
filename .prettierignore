@@ -6,3 +6,10 @@ src/lib/api/schema.d.ts
 src/lib/api/openapi.json
 playwright-report/
 test-results/
+# Erzeugt von `npm run design`, Format kommt aus design/generate.ts
+src/styles/tokens.css
+src/styles/base.css
+src/components/icon-names.ts
+public/icons.svg
+.claude/skills/vereine-design/tokens.md
+.claude/skills/vereine-design/icons.md

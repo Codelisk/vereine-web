@@ -1,29 +1,22 @@
 ---
+import Icon from '@/components/Icon.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { APP } from '@/config/site';
 ---
 
 <BaseLayout>
-  <main class="start">
-    <h1>{APP.name}</h1>
-    <p class="lead">{APP.description}</p>
-    <p class="hint">Hier entsteht die Verwaltung für deinen Verein. Bald geht es los.</p>
+  <main class="page">
+    <header class="page-header">
+      <h1>{APP.name}</h1>
+      <p class="subdued">{APP.description}</p>
+    </header>
+
+    <section class="empty-state" aria-labelledby="bald">
+      <span class="empty-state-icon">
+        <Icon name="soccer-ball" />
+      </span>
+      <h2 id="bald">Bald geht es los</h2>
+      <p>Hier verwaltest du bald Mitglieder, Termine und Beiträge deines Vereins.</p>
+    </section>
   </main>
 </BaseLayout>
-
-<style>
-  .start {
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: var(--space-8) var(--space-4);
-  }
-
-  .lead {
-    font-size: var(--text-lead);
-    color: var(--color-text);
-  }
-
-  .hint {
-    color: var(--color-text-muted);
-  }
-</style>

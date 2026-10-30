@@ -1,0 +1,21 @@
+---
+/**
+ * Icon aus dem Sprite `public/icons.svg` (Phosphor, Skill vereine-design, icons.md). Nur erlaubte Namen.
+ * Dekorativ: die Bedeutung trägt der Text daneben oder das `aria-label` des Buttons.
+ */
+import type { IconName } from './icon-names';
+
+interface Props {
+  name: IconName;
+  /** Gefüllte Form für den aktiven Zustand, z. B. den gewählten Tab. */
+  filled?: boolean;
+  size?: 'small' | 'medium' | 'large';
+}
+
+const { name, filled = false, size = 'medium' } = Astro.props;
+const sizeClass = { small: 'icon-sm', medium: undefined, large: 'icon-lg' }[size];
+---
+
+<svg class:list={['icon', sizeClass]} aria-hidden="true" focusable="false">
+  <use href={`/icons.svg#${name}${filled ? '-fill' : ''}`}></use>
+</svg>

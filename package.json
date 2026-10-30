@@ -14,13 +14,17 @@
     "preview": "astro preview",
     "check": "astro check",
     "sync": "astro sync",
-    "lint": "eslint .",
+    "lint": "npm run design:check && eslint . && npm run lint:css",
+    "lint:css": "stylelint --ignore-disables \"**/*.{css,astro,svelte}\"",
     "format": "prettier --write .",
     "astro": "astro",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "api:spec": "curl -sf ${VEREINE_API_URL:-http://localhost:5610}/openapi/v1.json -o src/lib/api/openapi.json",
-    "api:types": "openapi-typescript src/lib/api/openapi.json -o src/lib/api/schema.d.ts"
+    "api:types": "openapi-typescript src/lib/api/openapi.json -o src/lib/api/schema.d.ts",
+    "design": "node design/build.ts",
+    "design:check": "node design/build.ts --check",
+    "design:screens": "playwright test tests/e2e/design.spec.ts"
   },
   "dependencies": {
     "@astrojs/node": "^11.1.9",
@@ -31,7 +35,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
+    "@phosphor-icons/core": "^2.1.1",
     "@playwright/test": "^1.64.1",
     "@types/node": "^24.19.2",
     "eslint": "^10.13.0",
@@ -39,9 +45,13 @@
     "eslint-plugin-svelte": "^3.23.1",
     "globals": "^17.13.0",
     "openapi-typescript": "^7.13.0",
+    "postcss-html": "^2.0.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-svelte": "^4.1.1",
+    "stylelint": "^17.16.0",
+    "stylelint-declaration-strict-value": "^1.12.1",
+    "stylelint-value-no-unknown-custom-properties": "^6.1.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",
     "vitest": "^5.0.5"
